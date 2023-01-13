@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.aospa.glyph.Sensors;
+package com.pixys.glyph.Sensors;
 
 import android.annotation.NonNull;
 import android.content.Context;

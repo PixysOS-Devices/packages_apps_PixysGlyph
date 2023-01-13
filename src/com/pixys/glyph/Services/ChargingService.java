@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package co.aospa.glyph.Services;
+package com.pixys.glyph.Services;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -26,9 +26,9 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 
-import co.aospa.glyph.Constants.Constants;
-import co.aospa.glyph.Manager.AnimationManager;
-import co.aospa.glyph.Utils.FileUtils;
+import com.pixys.glyph.Constants.Constants;
+import com.pixys.glyph.Manager.AnimationManager;
+import com.pixys.glyph.Utils.FileUtils;
 
 public class ChargingService extends Service {
 

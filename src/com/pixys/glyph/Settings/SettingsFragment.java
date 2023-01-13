@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package co.aospa.glyph.Settings;
+package com.pixys.glyph.Settings;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -39,10 +39,10 @@ import com.android.settingslib.PrimarySwitchPreference;
 import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
-import co.aospa.glyph.R;
-import co.aospa.glyph.Constants.Constants;
-import co.aospa.glyph.Manager.SettingsManager;
-import co.aospa.glyph.Utils.ServiceUtils;
+import com.pixys.glyph.R;
+import com.pixys.glyph.Constants.Constants;
+import com.pixys.glyph.Manager.SettingsManager;
+import com.pixys.glyph.Utils.ServiceUtils;
 
 public class SettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
         OnMainSwitchChangeListener {

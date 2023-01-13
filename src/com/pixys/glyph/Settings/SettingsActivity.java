@@ -1,5 +1,7 @@
 /*
- * Copyright (C) 2022 Paranoid Android
+ * Copyright (C) 2015-2016 The CyanogenMod Project
+ *               2017 The LineageOS Project
+ *               2020-2022 Paranoid Android
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +16,7 @@
  * limitations under the License.
  */
 
-package co.aospa.glyph.Settings;
+package com.pixys.glyph.Settings;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -22,10 +24,10 @@ import android.os.Bundle;
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 import com.android.settingslib.widget.R;
 
-public class NotifsSettingsActivity extends CollapsingToolbarBaseActivity {
+public class SettingsActivity extends CollapsingToolbarBaseActivity {
 
-    private NotifsSettingsFragment mNotifsSettingsFragment;
-    private static final String TAG_GLYPH = "glyphnotifs";
+    private SettingsFragment mSettingsFragment;
+    private static final String TAG_GLYPH = "glyph";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,12 @@ public class NotifsSettingsActivity extends CollapsingToolbarBaseActivity {
 
         Fragment fragment = getFragmentManager().findFragmentById(R.id.content_frame);
         if (fragment == null) {
-            mNotifsSettingsFragment = new NotifsSettingsFragment();
+            mSettingsFragment = new SettingsFragment();
             getFragmentManager().beginTransaction()
-                .add(R.id.content_frame, mNotifsSettingsFragment, TAG_GLYPH)
+                .add(R.id.content_frame, mSettingsFragment, TAG_GLYPH)
                 .commit();
         } else {
-            mNotifsSettingsFragment = (NotifsSettingsFragment) fragment;
+            mSettingsFragment = (SettingsFragment) fragment;
         }
     }
 }
