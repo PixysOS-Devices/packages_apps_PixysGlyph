@@ -25,12 +25,6 @@
         android:key="glyph_enable"
         android:title="@string/glyph_settings_enable" />
 
-    <SwitchPreference
-        android:key="glyph_settings_flip_toggle"
-        android:defaultValue="true"
-        android:title="@string/glyph_settings_flip_toggle_title"
-        android:summary="@string/glyph_settings_flip_toggle_summary" />
-
     <SeekBarPreference
         android:key="glyph_settings_brightness"
         android:max="4"
@@ -70,5 +64,15 @@
             android:defaultValue="true"
             android:title="@string/glyph_settings_charging_level_title"
             android:summary="@string/glyph_settings_charging_level_summary" />
+
+    <PreferenceCategory
+        android:key="glyph_settings_advanced"
+        android:title="@string/glyph_settings_advanced_title" />
+
+     <SwitchPreference
+        android:key="glyph_settings_flip_toggle"
+        android:defaultValue="true"
+        android:title="@string/glyph_settings_flip_toggle_title"
+        android:summary="@string/glyph_settings_flip_toggle_summary" />
 
 </PreferenceScreen>
