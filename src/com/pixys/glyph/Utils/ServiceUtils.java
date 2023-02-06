@@ -29,6 +29,7 @@ import com.pixys.glyph.Services.CallReceiverService;
 import com.pixys.glyph.Services.ChargingService;
 import com.pixys.glyph.Services.FlipToGlyphService;
 import com.pixys.glyph.Services.NotificationService;
+import com.pixys.glyph.Services.MusicVisualizerService;
 
 public final class ServiceUtils {
 
@@ -71,7 +72,19 @@ public final class ServiceUtils {
                 UserHandle.CURRENT);
     }
 
-    public static void startNotificationService(Context context) {
+    public static void startMusicVisualizerService(Context context) {
+        if (DEBUG) Log.d(TAG, "Starting Music Visualizer service");
+        context.startServiceAsUser(new Intent(context, MusicVisualizerService.class),
+                UserHandle.CURRENT);
+    }
+
+    protected static void stopMusicVisualizerService(Context context) {
+        if (DEBUG) Log.d(TAG, "Stopping Music Visualizer service");
+        context.stopServiceAsUser(new Intent(context, MusicVisualizerService.class),
+                UserHandle.CURRENT);
+    }
+
+    private static void startNotificationService(Context context) {
         if (DEBUG) Log.d(TAG, "Starting Glyph notifs service");
         context.startServiceAsUser(new Intent(context, NotificationService.class),
                 UserHandle.CURRENT);
@@ -106,11 +119,17 @@ public final class ServiceUtils {
             } else {
                 stopFlipToGlyphService(context);
             }
+            if (SettingsManager.isGlyphMusicVisualizerEnabled(context)) {
+                startMusicVisualizerService(context);
+            } else {
+                stopMusicVisualizerService(context);
+            }
         } else {
             stopChargingService(context);
             stopCallReceiverService(context);
             stopNotificationService(context);
             stopFlipToGlyphService(context);
+            stopMusicVisualizerService(context);
         }
     }
 }
