@@ -112,6 +112,8 @@ public class SettingsFragment extends PreferenceFragment implements OnPreference
             mCallPreference.setEnabled(false);
             mChargingLevelPreference.setEnabled(false);
         }
+
+        mHandler.post(() -> ServiceUtils.checkGlyphService(getActivity()));
     }
 
     @Override
