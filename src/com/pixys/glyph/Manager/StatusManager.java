@@ -29,6 +29,8 @@ public final class StatusManager {
 
     private static boolean callLedEnabled = false;
 
+    private static boolean screenUpwards = false;
+
     public static boolean isAnimationActive() {
         return animationActive;
     }
@@ -59,6 +61,14 @@ public final class StatusManager {
 
     public static void setCallLedEnabled(boolean status) {
         callLedEnabled = status;
+    }
+
+    public static boolean isScreenUpwards() {
+	   return screenUpwards; 
+    }
+
+    public static void setScreenUpwards(boolean status) {
+    	screenUpwards = status;
     }
 
 }
