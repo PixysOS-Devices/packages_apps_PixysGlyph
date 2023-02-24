@@ -59,6 +59,10 @@
         </service>
 
         <service
+            android:name=".Services.FaceDownService">
+        </service>
+
+        <service
             android:name=".Services.FlipToGlyphService">
         </service>
 
