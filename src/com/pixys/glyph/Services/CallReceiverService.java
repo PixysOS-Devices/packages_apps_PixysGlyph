@@ -29,6 +29,9 @@ import android.util.Log;
 import com.pixys.glyph.Manager.AnimationManager;
 import java.util.concurrent.Executors;
 
+import com.pixys.glyph.Manager.AnimationManager;
+import com.pixys.glyph.Manager.SettingsManager;
+
 public class CallReceiverService extends Service {
 
     private static final String TAG = "GlyphCallReceiverService";
@@ -71,7 +74,7 @@ public class CallReceiverService extends Service {
 
     private void enableCallAnimation() {
         if (DEBUG) Log.d(TAG, "enableCallAnimation");
-        AnimationManager.playCall("plot", this);
+        AnimationManager.playCall(SettingsManager.getGlyphCallAnimation(this), this);
     }
 
     private void disableCallAnimation() {
