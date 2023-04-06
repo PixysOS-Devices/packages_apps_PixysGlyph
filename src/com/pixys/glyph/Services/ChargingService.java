@@ -100,7 +100,7 @@ public class ChargingService extends Service {
     }
 
     private void playChargingAnimation(boolean wait) {
-        AnimationManager.playCharging(getBatteryLevel(), wait, this);
+        AnimationManager.playCharging(getBatteryLevel(), wait);
     }
 
     private BroadcastReceiver mPowerMonitor = new BroadcastReceiver() {
