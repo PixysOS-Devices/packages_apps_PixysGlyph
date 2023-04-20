@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-package com.pixys.glyph.Services;
+package com.pixys.glyph.Tiles;
 
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 import com.pixys.glyph.R;
-import com.pixys.glyph.Manager.StatusManager;
-import com.pixys.glyph.Utils.FileUtils;
+import com.pixys.glyph.Manager.SettingsManager;
+import com.pixys.glyph.Utils.ServiceUtils;
 
 /** Quick settings tile: Glyph **/
 public class GlyphTileService extends TileService {
@@ -52,11 +52,11 @@ public class GlyphTileService extends TileService {
     }
 
     private boolean getEnabled() {
-        return StatusManager.isAllLedActive();
+        return SettingsManager.isGlyphEnabled();
     }
 
     private void setEnabled(boolean enabled) {
-        StatusManager.setAllLedsActive(enabled);
-        FileUtils.writeLineFromSlug("all", enabled ? 4095 : 0);
+        SettingsManager.enableGlyph(enabled);
+        ServiceUtils.checkGlyphService();
     }
 }

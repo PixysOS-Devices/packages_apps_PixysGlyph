@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pixys.glyph.Services;
+package com.pixys.glyph.Tiles;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -27,10 +27,10 @@ import androidx.annotation.Nullable;
 
 import com.pixys.glyph.Settings.SettingsActivity;
 
-public class GlyphTileServiceActivity extends Activity {
+public class TileActivity extends Activity {
 
     private static final boolean DEBUG = true;
-    private static final String TAG = "GlyphTileServiceActivity";
+    private static final String TAG = "TileActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +38,11 @@ public class GlyphTileServiceActivity extends Activity {
         super.onCreate(savedInstanceState);
         ComponentName sourceClass = getIntent().getParcelableExtra(Intent.EXTRA_COMPONENT_NAME);
         if (DEBUG) Log.d(TAG, "sourceClass: " + sourceClass.getClassName());
-        switch (sourceClass.getClassName()) {
-            case "com.pixys.glyph.Services.GlyphTileService":
-                openActivitySafely(new Intent(this, SettingsActivity.class));
-                break;
-            default:
-                finish();
-                break;
+        if (sourceClass.getClassName().equals("com.pixys.glyph.Tiles.GlyphTileService")
+            || sourceClass.getClassName().equals("com.pixys.glyph.Tiles.TorchTileService")) {
+            openActivitySafely(new Intent(this, SettingsActivity.class));
+        } else {
+            finish();
         }
     }
 
