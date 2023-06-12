@@ -22,6 +22,7 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 import com.pixys.glyph.R;
+import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.StatusManager;
 import com.pixys.glyph.Utils.FileUtils;
 
@@ -56,6 +57,6 @@ public class TorchTileService extends TileService {
 
     private void setEnabled(boolean enabled) {
         StatusManager.setAllLedsActive(enabled);
-        FileUtils.writeLineFromSlug("all", enabled ? 4095 : 0);
+        FileUtils.writeLineFromSlug("all", enabled ? Constants.getMaxBrightness() : 0);
     }
 }

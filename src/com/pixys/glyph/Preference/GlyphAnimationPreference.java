@@ -34,6 +34,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import com.pixys.glyph.R;
+import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.SettingsManager;
 import com.pixys.glyph.Utils.ResourceUtils;
 
@@ -203,7 +204,7 @@ public class GlyphAnimationPreference extends Preference {
                 return;
             }
             imageView.setImageResource(imgOn);
-            imageView.getDrawable().setAlpha(brightness*255/4095);
+            imageView.getDrawable().setAlpha(brightness*255/Constants.getMaxBrightness());
         }
     };
 }
