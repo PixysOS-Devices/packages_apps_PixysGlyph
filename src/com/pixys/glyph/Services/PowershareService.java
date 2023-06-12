@@ -25,20 +25,18 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
-import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.AnimationManager;
 import com.pixys.glyph.Utils.FileUtils;
+import com.pixys.glyph.Utils.ResourceUtils;
 
 public class PowershareService extends Service {
 
     private static final String TAG = "GlyphPowershareService";
     private static final boolean DEBUG = true;
 
-    private static Context context = Constants.CONTEXT;
-
-    private static final String POWERSHARE_ACTIVE = context.getString(R.string.glyph_settings_paths_powershare_active_absolute);
-    private static final String POWERSHARE_ENABLED = context.getString(R.string.glyph_settings_paths_powershare_enabled_absolute);
+    private static final String POWERSHARE_ACTIVE = ResourceUtils.getString("glyph_settings_paths_powershare_active_absolute");
+    private static final String POWERSHARE_ENABLED = ResourceUtils.getString("glyph_settings_paths_powershare_enabled_absolute");
 
     private PowershareActiveObserver mPowershareActiveObserver;
     private PowerManager mPowerManager;

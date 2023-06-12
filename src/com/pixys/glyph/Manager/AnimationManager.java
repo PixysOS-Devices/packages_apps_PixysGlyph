@@ -16,31 +16,22 @@
 
 package com.pixys.glyph.Manager;
 
-import android.content.Context;
-import android.provider.Settings;
 import android.util.Log;
 
-import androidx.preference.PreferenceManager;
-
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Utils.FileUtils;
+import com.pixys.glyph.Utils.ResourceUtils;
 
 public final class AnimationManager {
 
     private static final String TAG = "GlyphAnimationManager";
     private static final boolean DEBUG = true;
-
-    private static Context context = Constants.CONTEXT;
 
     private static Future<?> submit(Runnable runnable) {
         ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
@@ -49,11 +40,6 @@ public final class AnimationManager {
 
     private static boolean check(String name, boolean wait) {
         if (DEBUG) Log.d(TAG, "Playing animation | name: " + name + " | waiting: " + Boolean.toString(wait));
-
-	if (StatusManager.isScreenUpwards()) {
-            if (DEBUG) Log.d(TAG, "Screen is facing upwards, exiting animation | name: " + name);
-            return false;
-        }
 
         if (StatusManager.isAllLedActive()) {
             if (DEBUG) Log.d(TAG, "All LEDs are active, exiting animation | name: " + name);
@@ -93,10 +79,10 @@ public final class AnimationManager {
 
             StatusManager.setAnimationActive(true);
 
-            String[] slugs = context.getResources().getStringArray(R.array.glyph_settings_animations_slugs);
+            String[] slugs = ResourceUtils.getStringArray("glyph_settings_animations_slugs");
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    context.getResources().openRawResource(context.getResources().getIdentifier("anim_"+name, "raw", context.getPackageName()))))) {
+                    ResourceUtils.openRawResource("anim_"+name)))) {
                 while (true) {
                     if (DEBUG) Log.d(TAG, "1");
                     String line = reader.readLine(); if (line == null) break;
@@ -158,7 +144,7 @@ public final class AnimationManager {
                     FileUtils.writeSingleLed(i, Constants.BRIGHTNESS);
                     Thread.sleep(10);
                 }
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 for (int i=batteryArray.length-1; i>=0; i--) {
                     if (StatusManager.isCallLedEnabled() || StatusManager.isAllLedActive()) throw new InterruptedException();
                     FileUtils.writeSingleLed(batteryArray[i], 0);
@@ -190,11 +176,11 @@ public final class AnimationManager {
 
             StatusManager.setCallLedActive(true);
 
-            String[] slugs = context.getResources().getStringArray(R.array.glyph_settings_animations_slugs);
+            String[] slugs = ResourceUtils.getStringArray("glyph_settings_animations_slugs");
 
             while (StatusManager.isCallLedEnabled()) {
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        context.getResources().openRawResource(context.getResources().getIdentifier("anim_"+name, "raw", context.getPackageName()))))) {
+                        ResourceUtils.openRawResource("anim_"+name)))) {
                     while (true) {
                         String line = reader.readLine(); if (line == null) break;
                         if (!StatusManager.isCallLedEnabled() || StatusManager.isAllLedActive()) throw new InterruptedException();
@@ -209,7 +195,7 @@ public final class AnimationManager {
                 } finally {
                     if (StatusManager.isAllLedActive()) {
                         if (DEBUG) Log.d(TAG, "All LED active, pause playing animation | name: " + name);
-                        while (StatusManager.isAllLedActive()) {};
+                        while (StatusManager.isAllLedActive()) {}
                     }
                 }
             }
