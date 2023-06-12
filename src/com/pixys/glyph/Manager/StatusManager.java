@@ -16,8 +16,6 @@
 
 package com.pixys.glyph.Manager;
 
-import android.util.Log;
-
 public final class StatusManager {
 
     private static final String TAG = "GlyphStatusManager";
