@@ -27,6 +27,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceScreen;
 
+import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
@@ -34,6 +35,8 @@ import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.SettingsManager;
 import com.pixys.glyph.Preference.GlyphAnimationPreference;
+import com.pixys.glyph.Utils.MigrationUtils;
+import com.pixys.glyph.Utils.ResourceUtils;
 import com.pixys.glyph.Utils.ServiceUtils;
 
 public class CallSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
@@ -62,6 +65,11 @@ public class CallSettingsFragment extends PreferenceFragment implements OnPrefer
 
         mListPreference = (ListPreference) findPreference(Constants.GLYPH_CALL_SUB_ANIMATIONS);
         mListPreference.setOnPreferenceChangeListener(this);
+        mListPreference.setEntries(ResourceUtils.getCallAnimations());
+        mListPreference.setEntryValues(ResourceUtils.getCallAnimations());
+        if (!ArrayUtils.contains(ResourceUtils.getCallAnimations(), mListPreference.getValue())) {
+            mListPreference.setValue(MigrationUtils.getNewCallPattern(mListPreference.getValue()));
+        }
 
         mGlyphAnimationPreference = (GlyphAnimationPreference) findPreference(Constants.GLYPH_CALL_SUB_PREVIEW);
     }
