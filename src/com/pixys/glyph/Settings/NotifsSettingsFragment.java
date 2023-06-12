@@ -42,7 +42,6 @@ import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.SettingsManager;
 import com.pixys.glyph.Preference.GlyphAnimationPreference;
-import com.pixys.glyph.Utils.MigrationUtils;
 import com.pixys.glyph.Utils.ResourceUtils;
 import com.pixys.glyph.Utils.ServiceUtils;
 
@@ -80,9 +79,6 @@ public class NotifsSettingsFragment extends PreferenceFragment implements OnPref
         mListPreference.setOnPreferenceChangeListener(this);
         mListPreference.setEntries(ResourceUtils.getNotificationAnimations());
         mListPreference.setEntryValues(ResourceUtils.getNotificationAnimations());
-        if (!ArrayUtils.contains(ResourceUtils.getNotificationAnimations(), mListPreference.getValue())) {
-            mListPreference.setValue(MigrationUtils.getNewNotificationPattern(mListPreference.getValue()));
-        }
 
         mGlyphAnimationPreference = (GlyphAnimationPreference) findPreference(Constants.GLYPH_NOTIFS_SUB_PREVIEW);
 
