@@ -25,6 +25,7 @@ import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.StatusManager;
 import com.pixys.glyph.Utils.FileUtils;
+import com.pixys.glyph.Utils.ResourceUtils;
 
 /** Quick settings tile: Glyph **/
 public class TorchTileService extends TileService {
@@ -58,5 +59,9 @@ public class TorchTileService extends TileService {
     private void setEnabled(boolean enabled) {
         StatusManager.setAllLedsActive(enabled);
         FileUtils.writeLineFromSlug("all", enabled ? Constants.getMaxBrightness() : 0);
+        if (StatusManager.isEssentialLedActive() && !enabled)
+            FileUtils.writeLineFromSlug(
+                ResourceUtils.getString("glyph_settings_notifs_essential_slug"),
+                Constants.getMaxBrightness( )/ 100 * 7);
     }
 }

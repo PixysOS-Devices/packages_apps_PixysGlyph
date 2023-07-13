@@ -27,6 +27,8 @@ import com.android.internal.util.ArrayUtils;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Utils.FileUtils;
 import com.pixys.glyph.Utils.ResourceUtils;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class SettingsManager {
 
@@ -117,5 +119,11 @@ public final class SettingsManager {
     public static boolean isGlyphNotifsAppEnabled(String app) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(app, true) && isGlyphNotifsEnabled();
+    }
+
+    public static boolean isGlyphNotifsAppEssential(String app) {
+        Set<String> selectedValues = PreferenceManager.getDefaultSharedPreferences(context)
+                .getStringSet(Constants.GLYPH_NOTIFS_SUB_ESSENTIAL , new HashSet<String>());
+        return selectedValues.contains(app) && isGlyphNotifsEnabled();
     }
 }
