@@ -96,6 +96,7 @@ public class NotificationService extends NotificationListenerService
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn){
+        if (Constants.CONTEXT == null) return;
         if (DEBUG) Log.d(TAG, "onNotificationPosted");
         if (!SettingsManager.isGlyphNotifsEnabled()) return;
         String packageName = sbn.getPackageName();
