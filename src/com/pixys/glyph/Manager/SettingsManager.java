@@ -24,11 +24,12 @@ import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.ArrayUtils;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Utils.FileUtils;
 import com.pixys.glyph.Utils.ResourceUtils;
-import java.util.HashSet;
-import java.util.Set;
 
 public final class SettingsManager {
 

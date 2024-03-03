@@ -26,7 +26,6 @@ import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.pixys.glyph.Manager.AnimationManager;
 import java.util.concurrent.Executors;
 
 import com.pixys.glyph.Manager.AnimationManager;
@@ -82,7 +81,7 @@ public class CallReceiverService extends Service {
         AnimationManager.stopCall();
     }
 
-    private BroadcastReceiver mCallReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mCallReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
