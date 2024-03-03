@@ -37,12 +37,10 @@ import android.util.Log;
 
 import com.android.internal.util.ArrayUtils;
 
-
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.AnimationManager;
 import com.pixys.glyph.Manager.SettingsManager;
 import com.pixys.glyph.Manager.StatusManager;
-import com.pixys.glyph.Utils.FileUtils;
 
 public class NotificationService extends NotificationListenerService
         implements SharedPreferences.OnSharedPreferenceChangeListener {

@@ -32,9 +32,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.AnimationManager;
-import com.pixys.glyph.Utils.FileUtils;
 
 public class ChargingService extends Service {
 
@@ -106,7 +104,7 @@ public class ChargingService extends Service {
         AnimationManager.playCharging(getBatteryLevel(), wait);
     }
 
-    private BroadcastReceiver mPowerMonitor = new BroadcastReceiver() {
+    private final BroadcastReceiver mPowerMonitor = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {

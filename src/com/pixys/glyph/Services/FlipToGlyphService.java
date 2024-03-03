@@ -27,12 +27,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
-import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.AnimationManager;
-import com.pixys.glyph.Manager.SettingsManager;
-import com.pixys.glyph.Manager.StatusManager;
 import com.pixys.glyph.Sensors.FlipToGlyphSensor;
-import com.pixys.glyph.Utils.FileUtils;
 
 public class FlipToGlyphService extends Service {
 
@@ -80,7 +76,7 @@ public class FlipToGlyphService extends Service {
 
     private void onFlip(boolean flipped) {
         if (flipped == isFlipped) return;
-        if (DEBUG) Log.d(TAG, "Flipped: " + Boolean.toString(flipped));
+        if (DEBUG) Log.d(TAG, "Flipped: " + flipped);
         if (flipped) {
             mWakeLock.acquire(2500);
             AnimationManager.playCsv("flip");

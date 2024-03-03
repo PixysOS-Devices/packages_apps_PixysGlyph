@@ -18,7 +18,6 @@
 
 package com.pixys.glyph.Tiles;
 
-import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
