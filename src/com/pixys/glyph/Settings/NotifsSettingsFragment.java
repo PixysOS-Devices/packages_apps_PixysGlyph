@@ -30,7 +30,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.widget.MainSwitchPreference;
@@ -95,13 +95,13 @@ public class NotifsSettingsFragment extends PreferenceFragment implements OnPref
         Collections.sort(mApps, new ApplicationInfo.DisplayNameComparator(mPackageManager));
         for (ApplicationInfo app : mApps) {
             if(mPackageManager.getLaunchIntentForPackage(app.packageName) != null  && !ArrayUtils.contains(Constants.APPS_TO_IGNORE, app.packageName)) { // apps with launcher intent
-                SwitchPreference mSwitchPreference = new SwitchPreference(mScreen.getContext());
-                mSwitchPreference.setKey(app.packageName);
-                mSwitchPreference.setTitle(" " + app.loadLabel(mPackageManager).toString()); // add this space since the layout looks off otherwise
-                mSwitchPreference.setIcon(app.loadIcon(mPackageManager));
-                mSwitchPreference.setDefaultValue(true);
-                mSwitchPreference.setOnPreferenceChangeListener(this);
-                mCategory.addPreference(mSwitchPreference);
+                SwitchPreferenceCompat mSwitchPreferenceCompat = new SwitchPreferenceCompat(mScreen.getContext());
+                mSwitchPreferenceCompat.setKey(app.packageName);
+                mSwitchPreferenceCompat.setTitle(" " + app.loadLabel(mPackageManager).toString()); // add this space since the layout looks off otherwise
+                mSwitchPreferenceCompat.setIcon(app.loadIcon(mPackageManager));
+                mSwitchPreferenceCompat.setDefaultValue(true);
+                mSwitchPreferenceCompat.setOnPreferenceChangeListener(this);
+                mCategory.addPreference(mSwitchPreferenceCompat);
 
                 mEssentialApps.add(app.packageName);
                 mEssentialAppsNames.add(app.loadLabel(mPackageManager).toString());

@@ -61,13 +61,13 @@
         android:key="glyph_settings_charging"
         android:title="@string/glyph_settings_charging_title" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="glyph_settings_charging_level"
             android:defaultValue="true"
             android:title="@string/glyph_settings_charging_level_title"
             android:summary="@string/glyph_settings_charging_level_summary" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="glyph_settings_charging_powershare"
             android:defaultValue="true"
             android:title="@string/glyph_settings_charging_powershare_title"
@@ -77,7 +77,7 @@
         android:key="glyph_settings_volume"
         android:title="@string/glyph_settings_volume_title" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="glyph_settings_volume_level_toggle"
             android:defaultValue="true"
             android:title="@string/glyph_settings_volume_level_toggle_title"
@@ -87,13 +87,13 @@
         android:key="glyph_settings_misc"
         android:title="@string/glyph_settings_misc_title" />
 
-     <SwitchPreference
+     <SwitchPreferenceCompat
         android:key="glyph_settings_flip_toggle"
         android:defaultValue="true"
         android:title="@string/glyph_settings_flip_toggle_title"
         android:summary="@string/glyph_settings_flip_toggle_summary" />
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="glyph_settings_music_visualizer_toggle"
             android:defaultValue="false"
             android:title="@string/glyph_settings_music_visualizer_toggle_title"
