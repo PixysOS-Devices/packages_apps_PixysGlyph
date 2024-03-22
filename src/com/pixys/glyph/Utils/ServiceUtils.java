@@ -32,6 +32,7 @@ import com.pixys.glyph.Services.MusicVisualizerService;
 import com.pixys.glyph.Services.NotificationService;
 import com.pixys.glyph.Services.PowershareService;
 import com.pixys.glyph.Services.VolumeLevelService;
+import com.pixys.glyph.Services.FaceDownService;
 
 public final class ServiceUtils {
 
@@ -49,6 +50,18 @@ public final class ServiceUtils {
     private static void stopCallReceiverService() {
         if (DEBUG) Log.d(TAG, "Stopping Glyph call receiver service");
         context.stopServiceAsUser(new Intent(context, CallReceiverService.class),
+                UserHandle.CURRENT);
+    }
+
+   private static void startFaceDownService() {
+        if (DEBUG) Log.d(TAG, "Starting Face Down service");
+        context.startServiceAsUser(new Intent(context, FaceDownService.class),
+                UserHandle.CURRENT);
+    }
+
+    private static void stopFaceDownService() {
+        if (DEBUG) Log.d(TAG, "Stopping Face Down service");
+        context.stopServiceAsUser(new Intent(context, FaceDownService.class),
                 UserHandle.CURRENT);
     }
 
@@ -115,6 +128,7 @@ public final class ServiceUtils {
     public static void checkGlyphService() {
         if (SettingsManager.isGlyphEnabled()) {
             Constants.setBrightness(SettingsManager.getGlyphBrightness());
+               startFaceDownService();
             if (SettingsManager.isGlyphChargingEnabled()) {
                 startChargingService();
             } else {
@@ -152,6 +166,7 @@ public final class ServiceUtils {
             stopFlipToGlyphService();
             stopMusicVisualizerService();
             stopVolumeLevelService();
+	    stopFaceDownService();
         }
     }
 }

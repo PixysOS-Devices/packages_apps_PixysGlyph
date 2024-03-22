@@ -52,6 +52,11 @@ public final class AnimationManager {
             return false;
         }
 
+	if (StatusManager.isScreenUpwards()) {
+            if (DEBUG) Log.d(TAG, "Screen is facing upwards, exiting animation | name: " + name);
+            return false;
+        }
+
         if (StatusManager.isAnimationActive()) {
             long start = System.currentTimeMillis();
             if (name == "volume" && StatusManager.isVolumeLedActive()) {
