@@ -21,7 +21,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Switch;
+
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import androidx.preference.ListPreference;
 import androidx.preference.MultiSelectListPreference;
@@ -34,7 +36,6 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.widget.MainSwitchPreference;
-import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +49,7 @@ import com.pixys.glyph.Utils.ResourceUtils;
 import com.pixys.glyph.Utils.ServiceUtils;
 
 public class NotifsSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
-        OnMainSwitchChangeListener {
+        OnCheckedChangeListener {
 
     private PreferenceScreen mScreen;
 
@@ -141,7 +142,7 @@ public class NotifsSettingsFragment extends PreferenceFragment implements OnPref
     }
 
     @Override
-    public void onSwitchChanged(Switch switchView, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         SettingsManager.setGlyphNotifsEnabled(isChecked);
         ServiceUtils.checkGlyphService();
         mGlyphAnimationPreference.updateAnimation(isChecked,

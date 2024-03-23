@@ -19,8 +19,9 @@ package com.pixys.glyph.Settings;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Switch;
 
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -29,7 +30,6 @@ import androidx.preference.PreferenceScreen;
 
 import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.widget.MainSwitchPreference;
-import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
@@ -39,7 +39,7 @@ import com.pixys.glyph.Utils.ResourceUtils;
 import com.pixys.glyph.Utils.ServiceUtils;
 
 public class CallSettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
-        OnMainSwitchChangeListener {
+        OnCheckedChangeListener {
 
     private PreferenceScreen mScreen;
 
@@ -95,7 +95,7 @@ public class CallSettingsFragment extends PreferenceFragment implements OnPrefer
     }
 
     @Override
-    public void onSwitchChanged(Switch switchView, boolean isChecked) {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         SettingsManager.setGlyphCallEnabled(isChecked);
         ServiceUtils.checkGlyphService();
         mGlyphAnimationPreference.updateAnimation(isChecked,
