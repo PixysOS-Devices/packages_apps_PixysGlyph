@@ -122,8 +122,7 @@ public final class AnimationManager {
                         if (DEBUG) Log.d(TAG, "Animation line length mismatch | name: " + name + " | line: " + line);
                         throw new InterruptedException();
                     }
-                    long delay = 16666L - (System.currentTimeMillis() - start);
-                    Thread.sleep(delay/1000);
+                    Thread.sleep(17);
                 }
             } catch (Exception e) {
                 if (DEBUG) Log.d(TAG, "Exception while playing animation | name: " + name + " | exception: " + e);
@@ -153,7 +152,7 @@ public final class AnimationManager {
                         batteryArray[i] = Constants.getBrightness();
                         if (batteryDot && i == 0) continue;
 		                updateLedFrame(batteryArray);
-                        Thread.sleep(15);
+                        Thread.sleep(17);
                     }
                 }
                 long start = System.currentTimeMillis();
@@ -166,7 +165,7 @@ public final class AnimationManager {
                         if (batteryArray[i] != 0) {
                             batteryArray[i] = 0;
                             updateLedFrame(batteryArray);
-                            Thread.sleep(15);
+                            Thread.sleep(17);
                         }
                     }
                 }
@@ -219,7 +218,7 @@ public final class AnimationManager {
                     if (volumeArray[i] != 0) {
                         volumeArray[i] = 0;
                         updateLedFrame(volumeArray);
-                        Thread.sleep(15);
+                        Thread.sleep(17);
                     }
                 }
                 long start2 = System.currentTimeMillis();
@@ -267,8 +266,7 @@ public final class AnimationManager {
                             if (DEBUG) Log.d(TAG, "Animation line length mismatch | name: " + name + " | line: " + line);
                             throw new InterruptedException();
                         }
-                        long delay = 16666L - (System.currentTimeMillis() - start);
-                        Thread.sleep(delay/1000);
+                        Thread.sleep(17);
                     }
                 } catch (Exception e) {
                     if (DEBUG) Log.d(TAG, "Exception while playing animation | name: " + name + " | exception: " + e);
@@ -306,9 +304,8 @@ public final class AnimationManager {
                     for (int i : steps) {
                         if (checkInterruption("essential")) throw new InterruptedException();
                         updateLedSingle(led, Constants.getMaxBrightness() / 100 * i);
-                        Thread.sleep(25);
+                        Thread.sleep(17);
                     }
-                    Thread.sleep(250);
                 } catch (InterruptedException e) {}
 
                 StatusManager.setAnimationActive(false);
