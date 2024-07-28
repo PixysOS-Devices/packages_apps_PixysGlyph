@@ -33,6 +33,7 @@ import com.pixys.glyph.Services.NotificationService;
 import com.pixys.glyph.Services.PowershareService;
 import com.pixys.glyph.Services.VolumeLevelService;
 import com.pixys.glyph.Services.FaceDownService;
+import com.pixys.glyph.Services.AutoBrightnessService;
 
 public final class ServiceUtils {
 
@@ -125,6 +126,18 @@ public final class ServiceUtils {
                 UserHandle.CURRENT);
     }
 
+    private static void startAutoBrightnessService() {
+        if (DEBUG) Log.d(TAG, "Starting Auto Brightness service");
+        context.startServiceAsUser(new Intent(context, AutoBrightnessService.class),
+                UserHandle.CURRENT);
+    }
+
+    private static void stopAutoBrightnessService() {
+        if (DEBUG) Log.d(TAG, "Stopping Auto Brightness service");
+        context.stopServiceAsUser(new Intent(context, AutoBrightnessService.class),
+                UserHandle.CURRENT);
+    }
+
     public static void checkGlyphService() {
         if (SettingsManager.isGlyphEnabled()) {
             Constants.setBrightness(SettingsManager.getGlyphBrightness());
@@ -159,6 +172,11 @@ public final class ServiceUtils {
             } else {
                 stopVolumeLevelService();
             }
+            if (SettingsManager.isGlyphAutoBrightnessEnabled()) {
+                startAutoBrightnessService();
+            } else {
+                stopAutoBrightnessService();
+            }
         } else {
             stopChargingService();
             stopPowershareService();
@@ -167,6 +185,7 @@ public final class ServiceUtils {
             stopMusicVisualizerService();
             stopVolumeLevelService();
 	    stopFaceDownService();
+            stopAutoBrightnessService();
         }
     }
 }

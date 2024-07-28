@@ -45,6 +45,7 @@ import com.pixys.glyph.R;
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Manager.SettingsManager;
 import com.pixys.glyph.Utils.ServiceUtils;
+import com.pixys.glyph.Utils.ResourceUtils;
 
 public class SettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener,
         OnCheckedChangeListener, OnSharedPreferenceChangeListener {
@@ -52,6 +53,7 @@ public class SettingsFragment extends PreferenceFragment implements OnPreference
     private MainSwitchPreference mSwitchBar;
 
     private SwitchPreferenceCompat mFlipPreference;
+    private SwitchPreferenceCompat mAutoBrightnessPreference;
     private SeekBarPreference mBrightnessPreference;
     private PrimarySwitchPreference mNotifsPreference;
     private PrimarySwitchPreference mCallPreference;
@@ -85,8 +87,19 @@ public class SettingsFragment extends PreferenceFragment implements OnPreference
         mFlipPreference.setEnabled(glyphEnabled);
         mFlipPreference.setOnPreferenceChangeListener(this);
 
+        mAutoBrightnessPreference = (SwitchPreference) findPreference(Constants.GLYPH_AUTO_BRIGHTNESS_ENABLE);
+        if (ResourceUtils.getString("glyph_light_sensor").isBlank()) {
+            getPreferenceScreen().removePreference(mAutoBrightnessPreference);
+        }
+        mAutoBrightnessPreference.setEnabled(glyphEnabled);
+        mAutoBrightnessPreference.setOnPreferenceChangeListener(this);
+
         mBrightnessPreference = (SeekBarPreference) findPreference(Constants.GLYPH_BRIGHTNESS);
-        mBrightnessPreference.setEnabled(glyphEnabled);
+        if (mAutoBrightnessPreference.isChecked()) {
+            mBrightnessPreference.setEnabled(false);
+        } else {
+            mBrightnessPreference.setEnabled(glyphEnabled);
+        }
         mBrightnessPreference.setMin(1);
         mBrightnessPreference.setMax(Constants.getBrightnessLevels().length);
         mBrightnessPreference.setValue(SettingsManager.getGlyphBrightnessSetting());
@@ -147,6 +160,10 @@ public class SettingsFragment extends PreferenceFragment implements OnPreference
             SettingsManager.setGlyphNotifsEnabled(!mNotifsPreference.isChecked());
         }
 
+        if (preferenceKey.equals(Constants.GLYPH_AUTO_BRIGHTNESS_ENABLE)) {
+            mBrightnessPreference.setEnabled(mAutoBrightnessPreference.isChecked());
+        }
+
         if (preferenceKey.equals(Constants.GLYPH_MUSIC_VISUALIZER_ENABLE)) {
             boolean isChecked = mMusicVisualizerPreference.isChecked();
             mFlipPreference.setEnabled(isChecked);
@@ -172,7 +189,8 @@ public class SettingsFragment extends PreferenceFragment implements OnPreference
         mSwitchBar.setChecked(isChecked);
 
         mFlipPreference.setEnabled(isChecked && !mMusicVisualizerPreference.isChecked());
-        mBrightnessPreference.setEnabled(isChecked);
+        mAutoBrightnessPreference.setEnabled(isChecked);
+        mBrightnessPreference.setEnabled(isChecked && !mAutoBrightnessPreference.isChecked());
         mNotifsPreference.setEnabled(isChecked && !mMusicVisualizerPreference.isChecked());
         mNotifsPreference.setSwitchEnabled(isChecked && !mMusicVisualizerPreference.isChecked());
         mCallPreference.setEnabled(isChecked && !mMusicVisualizerPreference.isChecked());
