@@ -131,7 +131,7 @@ public final class AnimationManager {
                     if (batteryDot && i == 0) continue;
                     if (last == 0) {
                         updateLedFrame(batteryArray);
-                        Thread.sleep(17);
+                        Thread.sleep(15);
                     }
                 }
             }
@@ -171,7 +171,7 @@ public final class AnimationManager {
                     StatusManager.setChargingLedLast(i);
                     batteryArrayLast[i] = 0;
                     updateLedFrame(batteryArrayLast);
-                    Thread.sleep(17);
+                    Thread.sleep(15);
                 }
             }
         } catch (InterruptedException e) {
@@ -208,7 +208,7 @@ public final class AnimationManager {
                         StatusManager.setVolumeLedLast(i);
                         volumeArray[i] = Constants.getBrightness();
                         updateLedFrame(volumeArray);
-                        Thread.sleep(17);
+                        Thread.sleep(15);
                     }
                 } else {
                     int[] lastArray = StatusManager.getVolumeArrayLast();
@@ -218,7 +218,7 @@ public final class AnimationManager {
                             StatusManager.setVolumeLedLast(i);
                             lastArray[i] = Constants.getBrightness();
                             updateLedFrame(lastArray);
-                            Thread.sleep(17);
+                            Thread.sleep(15);
                         }
                     } else if (decrease) {
                         for (int i = last; i >= amount; i--) {
@@ -226,7 +226,7 @@ public final class AnimationManager {
                             StatusManager.setVolumeLedLast(i);
                             lastArray[i] = 0;
                             updateLedFrame(lastArray);
-                            Thread.sleep(17);
+                            Thread.sleep(15);
                         }
                     }
                     volumeArray = lastArray;
@@ -264,7 +264,7 @@ public final class AnimationManager {
                     StatusManager.setVolumeLedLast(i);
                     volumeArrayLast[i] = 0;
                     updateLedFrame(volumeArrayLast);
-                    Thread.sleep(17);
+                    Thread.sleep(15);
                 }
             }
         } catch (InterruptedException e) {
