@@ -101,7 +101,7 @@ public final class AnimationManager {
                     if (DEBUG) Log.d(TAG, "Animation line length mismatch | name: " + name + " | line: " + line);
                     throw new InterruptedException();
                 }
-                Thread.sleep(17);
+                Thread.sleep(16, 666000);
             }
         } catch (Exception e) {
             if (DEBUG) Log.d(TAG, "Exception while playing animation | name: " + name + " | exception: " + e);
@@ -134,7 +134,7 @@ public final class AnimationManager {
                     if (batteryDot && i == 0) continue;
                     if (last == 0) {
                         updateLedFrame(batteryArray);
-                        Thread.sleep(15);
+                        Thread.sleep(16, 666000);
                     }
                 }
             }
@@ -176,7 +176,7 @@ public final class AnimationManager {
                     StatusManager.setChargingLedLast(i);
                     batteryArrayLast[i] = 0;
                     updateLedFrame(batteryArrayLast);
-                    Thread.sleep(15);
+                    Thread.sleep(16, 666000);
                 }
             }
         } catch (InterruptedException e) {
@@ -216,7 +216,7 @@ public final class AnimationManager {
                         StatusManager.setVolumeLedLast(i);
                         volumeArray[i] = Constants.getBrightness();
                         updateLedFrame(volumeArray);
-                        Thread.sleep(15);
+                        Thread.sleep(16, 666000);
                     }
                 } else {
                     int[] lastArray = StatusManager.getVolumeArrayLast();
@@ -226,7 +226,7 @@ public final class AnimationManager {
                             StatusManager.setVolumeLedLast(i);
                             lastArray[i] = Constants.getBrightness();
                             updateLedFrame(lastArray);
-                            Thread.sleep(15);
+                            Thread.sleep(16, 666000);
                         }
                     } else if (decrease) {
                         for (int i = last; i >= amount; i--) {
@@ -234,7 +234,7 @@ public final class AnimationManager {
                             StatusManager.setVolumeLedLast(i);
                             lastArray[i] = 0;
                             updateLedFrame(lastArray);
-                            Thread.sleep(15);
+                            Thread.sleep(16, 666000);
                         }
                     }
                     volumeArray = lastArray;
@@ -274,7 +274,7 @@ public final class AnimationManager {
                     StatusManager.setVolumeLedLast(i);
                     volumeArrayLast[i] = 0;
                     updateLedFrame(volumeArrayLast);
-                    Thread.sleep(15);
+                    Thread.sleep(16, 666000);
                 }
             }
         } catch (InterruptedException e) {
@@ -314,7 +314,7 @@ public final class AnimationManager {
                         if (DEBUG) Log.d(TAG, "Animation line length mismatch | name: " + name + " | line: " + line);
                         throw new InterruptedException();
                     }
-                    Thread.sleep(17);
+                    Thread.sleep(16, 666000);
                 }
             } catch (Exception e) {
                 if (DEBUG) Log.d(TAG, "Exception while playing animation | name: " + name + " | exception: " + e);
@@ -352,7 +352,7 @@ public final class AnimationManager {
                     for (int i : steps) {
                         if (checkInterruption("essential")) throw new InterruptedException();
                         updateLedSingle(led, Constants.getMaxBrightness() / 100 * i);
-                        Thread.sleep(17);
+                        Thread.sleep(16, 666000);
                     }
                 } catch (InterruptedException e) {}
 
