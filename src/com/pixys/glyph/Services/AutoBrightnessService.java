@@ -30,6 +30,8 @@ import java.util.List;
 
 import com.pixys.glyph.Constants.Constants;
 import com.pixys.glyph.Utils.ResourceUtils;
+import com.pixys.glyph.Manager.AnimationManager;
+import com.pixys.glyph.Manager.StatusManager;
 
 public class AutoBrightnessService extends Service {
 
@@ -105,6 +107,8 @@ public class AutoBrightnessService extends Service {
                     " | BrightnessLux: " + led_lux + " | BrightnessValue: " + brightnessValue);
                 }
                 Constants.setBrightness(brightnessValue);
+                if (StatusManager.isEssentialLedActive())
+                    AnimationManager.playEssential();
             }
         }
 

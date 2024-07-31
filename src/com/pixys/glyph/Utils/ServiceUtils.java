@@ -34,6 +34,8 @@ import com.pixys.glyph.Services.PowershareService;
 import com.pixys.glyph.Services.VolumeLevelService;
 import com.pixys.glyph.Services.FaceDownService;
 import com.pixys.glyph.Services.AutoBrightnessService;
+import com.pixys.glyph.Manager.AnimationManager;
+import com.pixys.glyph.Manager.StatusManager;
 
 public final class ServiceUtils {
 
@@ -140,8 +142,12 @@ public final class ServiceUtils {
 
     public static void checkGlyphService() {
         if (SettingsManager.isGlyphEnabled()) {
-            Constants.setBrightness(SettingsManager.getGlyphBrightness());
+            if (SettingsManager.getGlyphBrightness() != Constants.getBrightness()) {
+                Constants.setBrightness(SettingsManager.getGlyphBrightness());
                startFaceDownService();
+                if (StatusManager.isEssentialLedActive())
+                    AnimationManager.playEssential();
+            }
             if (SettingsManager.isGlyphChargingEnabled()) {
                 startChargingService();
             } else {
