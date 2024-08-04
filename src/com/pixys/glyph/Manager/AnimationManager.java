@@ -155,14 +155,13 @@ public final class AnimationManager {
                 updateLedFrame(new int[batteryArray.length]);
         } finally {
             StatusManager.setAnimationActive(false);
-            StatusManager.setBatteryLevelLast(batteryLevel);
             StatusManager.setBatteryArrayLast(batteryArray);
             if (DEBUG) Log.d(TAG, "Done playing animation | name: charging");
         }
     }
 
     public static void dismissCharging() {
-        if (StatusManager.getBatteryLevelLast() == 0 
+        if (StatusManager.getChargingLedLast() == 0 
             || StatusManager.getBatteryArrayLast() == null)
             return;
 
@@ -174,9 +173,9 @@ public final class AnimationManager {
         int[] batteryArrayLast = StatusManager.getBatteryArrayLast();
 
         try {
-            if (checkInterruption("charging")) throw new InterruptedException();
+            if (checkInterruption("Dismiss charging")) throw new InterruptedException();
             for (int i = batteryArrayLast.length - 1; i >= 0; i--) {
-                if (checkInterruption("charging")) throw new InterruptedException();
+                if (checkInterruption("Dismiss charging")) throw new InterruptedException();
                 if (batteryArrayLast[i] != 0) {
                     StatusManager.setChargingLedLast(i);
                     batteryArrayLast[i] = 0;
@@ -242,14 +241,13 @@ public final class AnimationManager {
                 updateLedFrame(new int[volumeArray.length]);
         } finally {
             StatusManager.setAnimationActive(false);
-            StatusManager.setVolumeLevelLast(volumeLevel);
             StatusManager.setVolumeArrayLast(volumeArray);
             if (DEBUG) Log.d(TAG, "Done playing animation | name: volume");
         }
     }
 
     public synchronized static void dismissVolume() {
-        if (StatusManager.getVolumeLevelLast() == 0 
+        if (StatusManager.getVolumeLedLast() == 0 
             || StatusManager.getVolumeArrayLast() == null)
             return;
 
@@ -261,10 +259,10 @@ public final class AnimationManager {
         int[] volumeArrayLast = StatusManager.getVolumeArrayLast();
 
         try {
-            if (checkInterruption("volume")) throw new InterruptedException();
+            if (checkInterruption("Dismiss volume")) throw new InterruptedException();
             for (int i = volumeArrayLast.length - 1; i >= 0; i--) {
                 if (volumeArrayLast[i] != 0) {
-                    if (checkInterruption("volume")) throw new InterruptedException();
+                    if (checkInterruption("Dismiss volume")) throw new InterruptedException();
                     StatusManager.setVolumeLedLast(i);
                     volumeArrayLast[i] = 0;
                     updateLedFrame(volumeArrayLast);

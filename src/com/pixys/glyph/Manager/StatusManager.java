@@ -26,10 +26,8 @@ public final class StatusManager {
     private static boolean callLedActive = false;
     private static boolean essentialLedActive = false;
     private static int chargingLedLast = 0;
-    private static int batteryLevelLast = 0;
     private static int[] batteryArrayLast;
     private static int volumeLedLast = 0;
-    private static int volumeLevelLast = 0;
     private static int[] volumeArrayLast;
 
     private static boolean callLedEnabled = false;
@@ -75,14 +73,6 @@ public final class StatusManager {
     public static void setChargingLedLast(int last) {
         chargingLedLast = last;
     }
-    
-    public static int getBatteryLevelLast() {
-        return batteryLevelLast;
-    }
-
-    public static void setBatteryLevelLast(int batteryLevel) {
-        batteryLevelLast = batteryLevel;
-    }
 
     public static int[] getBatteryArrayLast() {
         return batteryArrayLast;
@@ -98,14 +88,6 @@ public final class StatusManager {
 
     public static void setVolumeLedLast(int last) {
         volumeLedLast = last;
-    }
-
-    public static int getVolumeLevelLast() {
-        return volumeLevelLast;
-    }
-
-    public static void setVolumeLevelLast(int volumeLevel) {
-        volumeLevelLast = volumeLevel;
     }
 
     public static int[] getVolumeArrayLast() {
