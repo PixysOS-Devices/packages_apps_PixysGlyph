@@ -29,7 +29,6 @@ import com.pixys.glyph.Services.CallReceiverService;
 import com.pixys.glyph.Services.ChargingService;
 import com.pixys.glyph.Services.FlipToGlyphService;
 import com.pixys.glyph.Services.MusicVisualizerService;
-import com.pixys.glyph.Services.NotificationService;
 import com.pixys.glyph.Services.PowershareService;
 import com.pixys.glyph.Services.VolumeLevelService;
 import com.pixys.glyph.Services.FaceDownService;

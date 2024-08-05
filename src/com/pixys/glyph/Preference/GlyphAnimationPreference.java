@@ -163,7 +163,6 @@ public class GlyphAnimationPreference extends Preference {
                         ResourceUtils.getAnimation(animationName)))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
-                        long start = System.currentTimeMillis();
                         line = line.replace(" ", "");
                         line = line.endsWith(",") ? line.substring(0, line.length() - 1) : line;
                         String[] split = line.split(",");
